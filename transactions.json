@@ -1,0 +1,134 @@
+[
+  {
+    "date": "2025-10-06",
+    "time": "01:47:16",
+    "item": "Sugar",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 1.0,
+    "emoji": "🧂",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "01:47:16",
+    "item": "Wheat Flour",
+    "quantity": 10.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 10.0,
+    "emoji": "🌾",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "01:47:16",
+    "item": "Rice",
+    "quantity": 5.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 5.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "01:48:20",
+    "item": "Sugar",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 1.0,
+    "emoji": "🧂",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "01:48:20",
+    "item": "Wheat Flour",
+    "quantity": 10.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 10.0,
+    "emoji": "🌾",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "01:48:20",
+    "item": "Rice",
+    "quantity": 5.0,
+    "unit": "kg",
+    "price": 1.0,
+    "total": 5.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Milk",
+    "quantity": 2.0,
+    "unit": "liter",
+    "price": 360.0,
+    "total": 720.0,
+    "emoji": "🥛",
+    "category": "Dairy"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Sugar",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 290.0,
+    "total": 290.0,
+    "emoji": "🧂",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Flour",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1450.0,
+    "total": 1450.0,
+    "emoji": "🌾",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Tea",
+    "quantity": 1.0,
+    "unit": "packet",
+    "price": 590.0,
+    "total": 590.0,
+    "emoji": "🍵",
+    "category": "Beverages"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Rice",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1250.0,
+    "total": 1250.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "02:10:02",
+    "item": "Egg",
+    "quantity": 1.0,
+    "unit": "dozen",
+    "price": 340.0,
+    "total": 340.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  }
+]

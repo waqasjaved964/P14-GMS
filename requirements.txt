@@ -1,0 +1,14 @@
+
+streamlit
+pandas
+plotly
+SpeechRecognition
+pydub
+audio-recorder-streamlit
+Pillow
+numpy
+openpyxl
+opencv-python
+pytesseract
+pdf2image
+python-dotenv
