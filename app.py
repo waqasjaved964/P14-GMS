@@ -13,17 +13,18 @@ import io
 import tempfile
 import base64
 from PIL import Image
-import numpy as np
-import cv2
 import pytesseract
 from pdf2image import convert_from_bytes
-import requests
+import warnings
 
-# Configure Tesseract path (Update this path according to your installation)
+# Suppress warnings
+warnings.filterwarnings("ignore")
+
+# Configure Tesseract path
 try:
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 except:
-    pass  # Use system PATH if not Windows
+    pass
 
 # Page config
 st.set_page_config(
@@ -109,12 +110,6 @@ st.markdown("""
     .transaction-item:hover {
         background-color: #e9ecef;
         transform: translateX(5px);
-    }
-    .invoice-preview {
-        border: 2px dashed #4CAF50;
-        border-radius: 10px;
-        padding: 1rem;
-        background-color: #f8f9fa;
     }
     .developer-footer {
         text-align: center;
@@ -405,48 +400,12 @@ def add_transaction(items):
 
 
 def extract_text_from_image(image):
-    """Extract text from image using OCR with enhanced preprocessing"""
+    """Extract text from image using OCR without OpenCV"""
     try:
-        open_cv_image = np.array(image)
-        open_cv_image = open_cv_image[:, :, ::-1].copy()
-
-        # Convert to grayscale
-        gray = cv2.cvtColor(open_cv_image, cv2.COLOR_BGR2GRAY)
-
-        # Apply multiple preprocessing techniques
-        # 1. Simple threshold
-        _, thresh1 = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
-
-        # 2. Otsu's threshold
-        _, thresh2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-
-        # 3. Adaptive threshold
-        thresh3 = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                        cv2.THRESH_BINARY, 11, 2)
-
-        # 4. Noise removal
-        kernel = np.ones((1, 1), np.uint8)
-        thresh4 = cv2.morphologyEx(thresh2, cv2.MORPH_CLOSE, kernel)
-        thresh4 = cv2.medianBlur(thresh4, 3)
-
-        # Try all preprocessing methods
-        custom_config = r'--oem 3 --psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./kgL- '
-
-        texts = []
-        for i, processed_img in enumerate([thresh1, thresh2, thresh3, thresh4]):
-            try:
-                text = pytesseract.image_to_string(processed_img, config=custom_config)
-                texts.append((text, len(text)))
-            except:
-                continue
-
-        # Use the text with the most content
-        if texts:
-            best_text = max(texts, key=lambda x: x[1])[0]
-            return best_text
-        else:
-            return pytesseract.image_to_string(gray, config=custom_config)
-
+        # Use PIL directly for basic OCR without OpenCV preprocessing
+        custom_config = r'--oem 3 --psm 6'
+        text = pytesseract.image_to_string(image, config=custom_config)
+        return text
     except Exception as e:
         return f"OCR Error: {str(e)}"
 
@@ -462,7 +421,7 @@ def parse_invoice_text(text):
                            ['invoice', 'date', 'total', 'thank you', '---', 'item', 'qty', 'unit', 'amount']):
             continue
 
-        # Method 1: Multi-column format (most common in invoices)
+        # Method 1: Multi-column format
         parsed_item = parse_multi_column_format(line)
 
         # Method 2: Single line with quantities and prices
@@ -482,7 +441,7 @@ def parse_invoice_text(text):
 def parse_multi_column_format(line):
     """Parse invoice line in multi-column format"""
     try:
-        # Split by multiple spaces (common in formatted invoices)
+        # Split by multiple spaces
         parts = [p.strip() for p in re.split(r'\s{2,}', line) if p.strip()]
 
         if len(parts) >= 3:
@@ -513,15 +472,13 @@ def parse_multi_column_format(line):
                     continue
 
             if price_candidates:
-                # For invoices, usually the first price is unit price, last is total
                 if len(price_candidates) >= 2:
-                    unit_price = price_candidates[0]  # First price is usually unit price
-                    total_price = price_candidates[-1]  # Last price is usually total
+                    unit_price = price_candidates[0]
+                    total_price = price_candidates[-1]
 
-                    # Verify logic: total should be approximately unit_price * quantity
+                    # Verify logic
                     calculated_total = unit_price * quantity
                     if abs(total_price - calculated_total) > 100:
-                        # If mismatch, try the other way
                         unit_price = price_candidates[-1] / quantity if quantity > 0 else price_candidates[-1]
                 else:
                     unit_price = price_candidates[0]
@@ -568,7 +525,7 @@ def parse_single_line_format(line):
                     quantity = quantity_from_name
                     unit = unit_from_name
 
-                # Find unit price (usually the first price after quantity)
+                # Find unit price
                 price_index = 2
                 if len(groups) > price_index:
                     try:
@@ -656,7 +613,7 @@ def parse_using_keywords(line):
 
 
 def extract_quantity_and_unit(text):
-    """Extract quantity and unit from text with enhanced logic"""
+    """Extract quantity and unit from text"""
     quantity = 1.0
     unit = 'piece'
 
@@ -787,8 +744,7 @@ load_data()
 
 # Header
 st.markdown('<p class="main-header">🛒 Grocery Expense Tracker</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-header">Track your grocery spending with Voice & Invoice Recognition</p>',
-            unsafe_allow_html=True)
+st.markdown('<p class="sub-header">Developed by WAQAS JAVED</p>', unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:
@@ -1295,7 +1251,7 @@ with tab4:
     else:
         st.info("📊 No data available for analytics. Add some transactions first!")
 
-# Tab 5: Invoice Upload (FULLY FUNCTIONAL)
+# Tab 5: Invoice Upload (FULLY FUNCTIONAL without OpenCV)
 with tab5:
     st.header("🧾 Invoice Upload & OCR")
     st.info("📸 Upload grocery invoice images or PDFs for automatic data extraction!")

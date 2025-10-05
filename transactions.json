@@ -130,5 +130,71 @@
     "total": 340.0,
     "emoji": "🍚",
     "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Rice",
+    "quantity": 2.0,
+    "unit": "kg",
+    "price": 180,
+    "total": 360.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Rice",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 210,
+    "total": 210.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Rice",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1450,
+    "total": 1450.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Rice",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 590,
+    "total": 590.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Rice",
+    "quantity": 1.0,
+    "unit": "kg",
+    "price": 1250,
+    "total": 1250.0,
+    "emoji": "🍚",
+    "category": "Staples"
+  },
+  {
+    "date": "2025-10-06",
+    "time": "03:17:07",
+    "item": "Eggs",
+    "quantity": 1.0,
+    "unit": "dozen",
+    "price": 340,
+    "total": 340.0,
+    "emoji": "🥚",
+    "category": "Dairy"
   }
 ]
