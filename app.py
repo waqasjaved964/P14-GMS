@@ -16,6 +16,26 @@ from PIL import Image
 import pytesseract
 from pdf2image import convert_from_bytes
 import warnings
+import os
+import warnings
+
+# Configure FFmpeg path for pydub
+os.environ['PATH'] = r"C:\ProgramData\chocolatey\bin" + os.pathsep + os.environ['PATH']
+
+# Suppress the ffmpeg warning
+warnings.filterwarnings("ignore", message=".*ffmpeg.*")
+warnings.filterwarnings("ignore", message=".*avconv.*")
+
+# Test FFmpeg availability
+try:
+    import subprocess
+    result = subprocess.run(['ffmpeg', '-version'], capture_output=True, text=True, timeout=5)
+    if result.returncode == 0:
+        print("✅ FFmpeg is ready for audio processing")
+    else:
+        print("⚠️ FFmpeg found but may have issues")
+except Exception as e:
+    print(f"❌ FFmpeg test failed: {e}")
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
